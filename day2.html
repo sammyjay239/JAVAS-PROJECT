@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Log In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none;
+        }
+
+        body {
+            background-color: navy;
+        }
+
+        .container {
+            object-fit: contain;
+            width: 400px;
+            height: 450px;
+            border: 1px thin black;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* background-color: navy; */
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+            color: rgb(255, 72, 0);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            margin-left: 40px;
+        }
+
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-left: 150px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            background-color: darkgreen;
+        }
+
+        .login,
+        .signup {
+            text-align: center;
+            color: white;
+        }
+
+        #ghy {
+            background-color: rgb(31, 202, 16);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+
+
+        }
+
+        #ghy:hover {
+            cursor: pointer;
+            background-color: darkred;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* label{
+            background-color: white; */
+    </style>
+
+</head>
+
+</div>
+
+<body>
+    <a href=""></a>
+    <div class="container" id="signupContainer">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <input type="file" id="picture" required>
+            <input type="text" id="firstInp" placeholder="First Name" required>
+            <input type="text" id="lastInp" placeholder="Last Name" required>
+            <input type="email" id="emailInp" placeholder="Email" required>
+            <input type="password" id="passwordInp" placeholder="Password" required>
+            <input type="password" id="confirmPasswordInp" placeholder="Confirm Password" required>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <div class="login">
+            Already have an account? <button id="ghy" onclick="showLogin()">Log In</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="loginContainer">
+        <h3>Log In</h3>
+        <h6>Please log in to continue</h6>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email Address" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+        <div class="signup">
+            Don't have an account? <button id="ghy" onclick="showSignup()">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Firebase App (core)
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <!-- Firebase Storage (optional: for storing profile pictures) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script> -->
+
+
+
+    <script>
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-app.firebaseapp.com",
+            projectId: "your-app-id",
+            storageBucket: "your-app.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const storage = firebase.storage();
+
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const firstname = document.getElementById('firstInp').value;
+            const lastname = document.getElementById('lastInp').value;
+            const email = document.getElementById('emailInp').value;
+            const password = document.getElementById('passwordInp').value;
+            const confirmPassword = document.getElementById('confirmPasswordInp').value;
+            const pictureInput = document.getElementById('picture');
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const pictureData = e.target.result;
+
+                const userData = {
+                    firstname,
+                    lastname,
+                    email,
+                    password,
+                    picture: pictureData
+                };
+
+                localStorage.setItem('userData', JSON.stringify(userData));
+                showLogin();
+                alert("Signup successful! Please log in.");
+            };
+
+            reader.readAsDataURL(pictureInput.files[0]);
+        });
+
+
+        window.onload = function () {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('signupContainer').classList.remove('hidden');
+        };
+
+
+        function showLogin() {
+            document.getElementById('signupContainer').classList.add('hidden');
+            document.getElementById('loginContainer').classList.remove('hidden');
+        }
+
+
+        function showSignup() {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('signupContainer').classList.remove('hidden');
+        }
+
+
+        
+        document.getElementById('signupForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const firstname = document.getElementById('firstInp').value;
+            const lastname = document.getElementById('lastInp').value;
+            const email = document.getElementById('emailInp').value;
+            const password = document.getElementById('passwordInp').value;
+            const confirmPassword = document.getElementById('confirmPasswordInp').value;
+            const pictureFile = document.getElementById('picture').files[0];
+
+            if (password !== confirmPassword) {
+                return alert("Passwords do not match.");
+            }
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                let photoURL = '';
+
+                if (pictureFile) {
+                    const storageRef = storage.ref().child(`profilePics/${user.uid}`);
+                    await storageRef.put(pictureFile);
+                    photoURL = await storageRef.getDownloadURL();
+                }
+
+                await user.updateProfile({
+                    displayName: `${firstname} ${lastname}`,
+                    photoURL: photoURL
+                });
+
+                alert("Signup successful! Please log in.");
+                showLogin();
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                window.location.href = "./otherhtmlpages/landingpage.html";
+            } catch (error) {
+                alert("Login failed: " + error.message);
+            }
+        });
+
+      
+    </script>
+</body>
+
+</html>
