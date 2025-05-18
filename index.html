@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Sign Up</title>
   <style>
     body {
-      background:navy;
+      background: navy;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
+
     .signup-container {
       background: white;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       width: 350px;
       text-align: center;
     }
-    input[type="text"], input[type="email"], input[type="password"] {
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
     input[type="file"] {
       margin: 10px 0;
     }
+
     .profile-pic-preview {
       width: 100px;
       height: 100px;
@@ -38,6 +45,7 @@
       margin: 10px auto;
       display: none;
     }
+
     button {
       background: #28a745;
       color: white;
@@ -47,65 +55,112 @@
       margin-top: 10px;
       cursor: pointer;
     }
+
     a {
       display: block;
       margin-top: 15px;
     }
 
 
-   @media (max-width: 600px) {
-  body {
-    padding: 20px;
-    height: auto;
-    align-items: flex-start;
-  }
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+        height: auto;
+        align-items: flex-start;
+      }
 
-  .signup-container {
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 0;
-    box-shadow: none;
-  }
+      .signup-container {
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 0;
+        box-shadow: none;
+      }
 
-  .signup-container h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
+      .signup-container h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 12px;
-  }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 12px;
+      }
 
-  input[type="file"] {
-    font-size: 1rem;
-    font-weight: bold;
-  }
+      input[type="file"] {
+        font-size: 1rem;
+        font-weight: bold;
+      }
 
-  .profile-pic-preview {
-    width: 90px;
-    height: 90px;
-  }
+      .profile-pic-preview {
+        width: 90px;
+        height: 90px;
+      }
 
-  button {
-    width: 100%;
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 12px;
-  }
+      button {
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 12px;
+      }
 
-  a {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-}
+      a {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
 
+    @media only screen and (max-width: 400px) {
+      body {
+        padding: 15px;
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+      }
 
+      .signup-container {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .signup-container h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="file"] {
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 12px;
+      }
+
+      .profile-pic-preview {
+        width: 80px;
+        height: 80px;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 12px;
+      }
+
+      a {
+        font-size: 0.95rem;
+        font-weight: bold;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="signup-container">
     <h2>Sign Up</h2>
@@ -149,4 +204,5 @@
     }
   </script>
 </body>
+
 </html>
