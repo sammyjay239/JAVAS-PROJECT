@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+     <div class="signup-container">
+    <h2>Sign Up</h2>
+    <input type="text" id="name" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="file" id="profilePic" accept="image/*" onchange="previewPic()" />
+    <img class="profile-pic-preview" id="preview" />
+    <button onclick="signup()">Sign Up</button>
+    <a href="./index2.html">Already have an account? Log in</a>
+  </div>
+
+ 
+
+  <script>
+    function previewPic() {
+      const file = document.getElementById('profilePic').files[0];
+      const preview = document.getElementById('preview');
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      }
+    }
+
+    function signup() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const pic = document.getElementById('profilePic').files[0];
+
+      if (name && email && pic) {
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+
+        const reader = new FileReader();
+        reader.onloadend = function () {
+          localStorage.setItem('userPic', reader.result);
+          window.location.href = './otherhtmlpages/landingpage.html';
+        };
+        reader.readAsDataURL(pic);
+      } else {
+        alert('Please fill out all fields and upload a picture.');
+      }
+    }
+  </script>
+</body>
+</html>
