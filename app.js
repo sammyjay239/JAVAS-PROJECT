@@ -159,42 +159,8 @@ window.onload = displayBookmarks;
 
 
 
-// Sample function to bookmark a recipe
-function bookmarkRecipe(recipe) {
-    let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-    // Prevent duplicates
-    if (!bookmarks.find(item => item.id === recipe.id)) {
-        bookmarks.push(recipe);
-        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-        alert("Recipe bookmarked!");
-    } else {
-        alert("Already bookmarked!");
-    }
-}
 
-// Function to show bookmarked list
-function listOfBookmark() {
-    const bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
-    const listDiv = document.getElementById("bookmarkList");
 
-    if (bookmarks.length === 0) {
-        listDiv.innerHTML = "<p>No bookmarks yet.</p>";
-        return;
-    }
-
-    // Render the list
-    listDiv.innerHTML = "<h3>Your Bookmarked Recipes:</h3>";
-    bookmarks.forEach(recipe => {
-        const div = document.createElement("div");
-        div.innerHTML = `
-            <h4>${recipe.title}</h4>
-            <img src="${recipe.image}" width="100">
-            <p>${recipe.description || ''}</p>
-            <hr>
-        `;
-        listDiv.appendChild(div);
-    });
-}
 
 
 

@@ -1,0 +1,56 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fefefe;
+  color: #333;
+}
+
+.heading {
+  text-align: center;
+  padding: 20px;
+  background-color: tomato;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px 40px;
+}
+
+.meal-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.meal-card:hover {
+  transform: scale(1.02);
+}
+
+.meal-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.meal-card-content {
+  padding: 15px;
+}
+
+.meal-card h3 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.meal-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #666;
+}
